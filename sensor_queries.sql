@@ -30,13 +30,12 @@ SELECT id, created_at as "createdAt", sensor_type as "sensorType", rolling_avg a
 
 
 SELECT s1.id                  as "measurement_id",
-       s1.sensor_type         as "sensor",
        s1.created_at          as "measured_at",
-       s1.humidity            as "s1_humdity",
+       s1.humidity            as "s1_humidity",
        s2.humidity            as "s2_humidity",
        s3.humidity            as "s3_humidity",
        wd.weather_measured_at as "weather_measured_at",
-       wd.humidity            as "weather_himidity",
+       wd.humidity            as "weather_humidity",
        wd.precipitation_mm    as "weather_precipitation",
        wd.cloud               as "weather_cloud",
        wd.temperature_c       as "weather_temperature",
@@ -49,4 +48,4 @@ FROM (SELECT * FROM sensor_data WHERE sensor_type = 'FIRST') s1
               ON s3.created_at BETWEEN s1.created_at - interval '1 minute' AND s1.created_at + interval '1 minute'
          LEFT JOIN weather_data wd on wd.id = s1.weather_id
 ORDER BY s1.created_at DESC
-LIMIT 10;
+LIMIT null;

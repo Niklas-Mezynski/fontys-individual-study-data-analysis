@@ -49,3 +49,4 @@ FROM (SELECT * FROM sensor_data WHERE sensor_type = 'FIRST') s1
          LEFT JOIN weather_data wd on wd.id = s1.weather_id
 ORDER BY s1.created_at DESC
 LIMIT null;
+

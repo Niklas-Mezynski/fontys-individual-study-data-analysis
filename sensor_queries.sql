@@ -50,3 +50,7 @@ FROM (SELECT * FROM sensor_data WHERE sensor_type = 'FIRST') s1
 ORDER BY s1.created_at DESC
 LIMIT null;
 
+
+SELECT AVG(humidity) AS average_value
+FROM weather_data
+WHERE weather_measured_at >= current_date - interval '20 days';
